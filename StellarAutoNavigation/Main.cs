@@ -9,7 +9,9 @@ using HarmonyLib;
 
 namespace AutoNavigate
 {
-    [BepInPlugin(__GUID__, __NAME__, "1.08")]
+    // BepInEx.PluginInfoProps 按 csproj 的 RootNamespace=AutoStellerNavigate 生成 PluginInfo，
+    // BepInEx 自己的 namespace 也叫 PluginInfo，所以这里用完全限定名避免歧义。
+    [BepInPlugin(__GUID__, __NAME__, AutoStellerNavigate.PluginInfo.PLUGIN_VERSION)]
     public class AutoNavigate : BaseUnityPlugin
     {
         public const string __NAME__ = "StellarAutoNavigation";

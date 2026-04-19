@@ -26,20 +26,15 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-nuget-
 
-      # NOTE: SelectBuilder 当前引用的是旧版 DSP 的 API（GIRer / PlayerAction_Build.previewPose 等在新版
-      # Assembly-CSharp 中已不存在），暂时从 CI 中排除，待代码适配后再加回来。
-      - name: Build BetterStarmap
-        run: dotnet build BetterStarmap/BetterStarmap.csproj -c Release
-
-      - name: Build AutoStellarNavigate
-        run: dotnet build StellarAutoNavigation/AutoStellarNavigate.csproj -c Release
+      - name: Build LoosqkTools
+        run: dotnet build LoosqkTools.sln -c Release
 
       - name: Upload plugin DLLs
         uses: actions/upload-artifact@v4
         with:
-          name: DspMods-dlls
+          name: LoosqkTools-dlls
           path: |
-            **/bin/Release/**/BetterStarmap.dll
             **/bin/Release/**/AutoStellerNavigate.dll
+            **/bin/Release/**/AchievementsEnabler.dll
             **/bin/Release/**/Common.dll
           if-no-files-found: error

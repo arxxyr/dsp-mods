@@ -1,0 +1,14 @@
+<Project>
+  <!--
+    共享版本与身份信息。整个仓库作为单一 Thunderstore 包（fablol/LoosqkTools）发布，
+    所有子插件统一版本号。修改版本时改这一处即可（manifest.json 和 thunderstore.toml
+    不由 MSBuild 管理，需要同步手改）。
+  -->
+  <PropertyGroup>
+    <Version>1.0.0</Version>
+    <Authors>loosqk</Authors>
+    <Company>loosqk</Company>
+    <Product>LoosqkTools</Product>
+    <Copyright>Copyright (c) 2026 loosqk. Includes work by Jimmie Clark (AutoStellarNavigation) and PhantomGamers (AchievementsEnabler, MIT).</Copyright>
+  </PropertyGroup>
+</Project>

@@ -1,10 +1,10 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
 <Project Sdk="Microsoft.NET.Sdk">
+
   <PropertyGroup>
-    <ProjectGuid>{43CACCED-1C08-475C-80C9-8A77158A4BD9}</ProjectGuid>
-    <RootNamespace>AutoStellerNavigate</RootNamespace>
-    <AssemblyName>AutoStellerNavigate</AssemblyName>
     <TargetFramework>net472</TargetFramework>
+    <AssemblyName>AchievementsEnabler</AssemblyName>
+    <RootNamespace>AchievementsEnabler</RootNamespace>
+    <Description>Enables local achievements for modded clients</Description>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <LangVersion>latest</LangVersion>
     <RestoreAdditionalProjectSources>
@@ -13,29 +13,24 @@
       https://nuget.samboy.dev/v3/index.json
     </RestoreAdditionalProjectSources>
   </PropertyGroup>
+
   <ItemGroup>
     <PackageReference Include="BepInEx.Analyzers" Version="1.*" PrivateAssets="all" />
     <PackageReference Include="BepInEx.Core" Version="5.*" />
     <PackageReference Include="BepInEx.PluginInfoProps" Version="1.*" />
-    <PackageReference Include="DysonSphereProgram.GameLibs" Version="0.10.34.28470-r.0" IncludeAssets="compile" />
     <PackageReference Include="UnityEngine.Modules" Version="2022.3.62" IncludeAssets="compile" />
+    <PackageReference Include="DysonSphereProgram.GameLibs" Version="0.10.34.28470-r.0" IncludeAssets="compile" />
   </ItemGroup>
+
   <ItemGroup Condition="'$(TargetFramework.TrimEnd(`0123456789`))' == 'net'">
-    <PackageReference Include="Microsoft.NETFramework.ReferenceAssemblies" Version="1.0.2" PrivateAssets="all" />
+    <PackageReference Include="Microsoft.NETFramework.ReferenceAssemblies" Version="1.0.3" PrivateAssets="all" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Common\Common.csproj" />
-  </ItemGroup>
+
   <PropertyGroup>
     <DspDeployDir>$(APPDATA)\r2modmanPlus-local\DysonSphereProgram\profiles\Default\BepInEx\plugins\loosqk-tools\</DspDeployDir>
   </PropertyGroup>
   <Target Name="PostBuild" AfterTargets="PostBuildEvent"
           Condition="'$(OS)' == 'Windows_NT' And Exists('$(DspDeployDir)')">
-    <Exec Command="xcopy /y /d &quot;$(TargetDir)*.dll&quot; &quot;$(DspDeployDir)&quot;" />
+    <Exec Command="xcopy /y /d &quot;$(TargetDir)$(AssemblyName).dll&quot; &quot;$(DspDeployDir)&quot;" />
   </Target>
-  <!--
-  <PropertyGroup>
-    <PostBuildEvent>COPY $(TargetPath) "G:\SteamLibrary\steamapps\common\Dyson Sphere Program\BepInEx\plugins"</PostBuildEvent>
-  </PropertyGroup>
-  -->
 </Project>

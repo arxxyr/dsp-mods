@@ -1,0 +1,9 @@
+{
+    "name": "LoosqkTools",
+    "version_number": "1.0.0",
+    "website_url": "https://github.com/arxxyr/dsp-mods",
+    "description": "戴森球计划 mod 合集：星际自动导航 + 允许 mod 存档解锁本地成就",
+    "dependencies": [
+        "xiaoye97-BepInEx-5.4.17"
+    ]
+}
