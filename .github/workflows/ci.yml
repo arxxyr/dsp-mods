@@ -1,0 +1,44 @@
+name: CI
+
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+    branches: [main, master]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup .NET SDK
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '8.0.x'
+
+      - name: Cache NuGet packages
+        uses: actions/cache@v4
+        with:
+          path: ~/.nuget/packages
+          key: ${{ runner.os }}-nuget-${{ hashFiles('**/*.csproj') }}
+          restore-keys: |
+            ${{ runner.os }}-nuget-
+
+      - name: Restore
+        run: dotnet restore DspMods.sln
+
+      - name: Build (Release)
+        run: dotnet build DspMods.sln -c Release --no-restore
+
+      - name: Upload plugin DLLs
+        uses: actions/upload-artifact@v4
+        with:
+          name: DspMods-dlls
+          path: |
+            **/bin/Release/**/BetterStarmap.dll
+            **/bin/Release/**/SelectBuilder.dll
+            **/bin/Release/**/AutoStellarNavigate.dll
+            **/bin/Release/**/Common.dll
+          if-no-files-found: error
