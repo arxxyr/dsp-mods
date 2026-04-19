@@ -43,9 +43,8 @@
   <ItemGroup>
     <ProjectReference Include="..\Common\Common.csproj" />
   </ItemGroup>
-  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
-  </Target>
-  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+  <Target Name="PostBuild" AfterTargets="PostBuildEvent"
+          Condition="'$(OS)' == 'Windows_NT' And Exists('C:\Users\Jimmie\AppData\Roaming\r2modmanPlus-local\DysonSphereProgram\profiles\DSP_Default_newgame\BepInEx\plugins\JClark-AutoStellarNavigation\')">
     <Exec Command="xcopy /y /d  &quot;$(TargetDir)\*.dll&quot; &quot;C:\Users\Jimmie\AppData\Roaming\r2modmanPlus-local\DysonSphereProgram\profiles\DSP_Default_newgame\BepInEx\plugins\JClark-AutoStellarNavigation\&quot;" />
   </Target>
   <!--
